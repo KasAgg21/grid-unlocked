@@ -1,0 +1,79 @@
+.p
+{
+    width: auto;
+    float: right;
+    margin-top: 5px;
+    margin-right: 20px;
+    transition: all ease 100ms;
+}
+
+.p1
+{
+    background-image: url(assets/delivery-truck.png);
+    background-size: contain;
+    align-items: center; 
+    background-repeat: no-repeat;  
+}
+
+.p2
+{
+    background-image: url(assets/customer-support.png);
+    background-size: contain;
+    align-items: center; 
+    background-repeat: no-repeat;  
+}
+
+.p3
+{
+    background-image: url(assets/secure-payment.png);
+    background-size: contain;
+    align-items: center; 
+    background-repeat: no-repeat;  
+}
+
+.p4
+{
+    background-image: url(assets/chinese-coin.png);
+    background-size: contain;
+    align-items: center; 
+    background-repeat: no-repeat;  
+}
+
+.o
+{
+    width: 200px;
+    height: 150px;
+    float: right;
+    margin-top: 5px;
+    margin-right: 20px;
+    transition: all ease 100ms;
+}
+
+.o1
+{
+    background-image: url(assets/electronic-store-promotional-banner-1.jpg);
+    background-size: contain;
+    align-items: center; 
+    background-repeat: no-repeat;  
+}
+
+.o2
+{
+    background-image: url(assets/electronic-store-promotional-banner-1.jpg);
+    background-size: contain;
+    align-items: center; 
+    background-repeat: no-repeat;  
+}
+
+.cart
+{
+    width: auto;
+    float: right;
+    margin-top: 5px;
+    margin-right: 20px;
+    transition: all ease 100ms;
+    background-image: url(assets/shopping-cart.png);
+    background-size: contain;
+    align-items: center; 
+    background-repeat: no-repeat; 
+}
