@@ -8,7 +8,109 @@
     <link rel="stylesheet" href="main.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
 
+            $("#txtemail").blur(function () {
+                var emailid = $(this).val();
+                var obj = {
+                    type: "get",
+                    url: "/check-emailid",
+                    data: {
+                        emaili: emailid,
+                    }
+                }
+
+                $.ajax(obj).done(function (respkuch) {
+                    $('#res').html(respkuch);
+                }).fail(function (errKuch) {
+                    $('#res').html(respkuch);
+                })
+            });
+            $("#btnsu").click(function () {
+                var emailid = $(txtemail).val();
+                var pwd = $(txtpwd).val();
+                var obj = {
+                    type: "get",
+                    url: "/record",
+                    data: {
+                        emaili: emailid,
+                        pw: pwd
+                    }
+                }
+
+                $.ajax(obj).done(function (respkuch) {
+                    $("#sres").html(respkuch);
+                }).fail(function (errKuch) {
+                    alert(errKuch);
+                })
+                $("#modal").modal("hide");
+            });
+            $("#btnli").click(function () {
+                var lemailid = $(txtlemail).val();
+                var lpwd = $(txtlpwd).val();
+                var lobj = {
+                    type: "get",
+                    url: "/login",
+                    data: {
+                        lemaili: lemailid,
+                        lpw: lpwd
+                    }
+                }
+
+                $.ajax(lobj).done(function (respkuch) {
+                    localStorage.setItem("active", $(txtlemail).val());
+                    if (respkuch==1)
+                        location.href = "user.html";
+                    else
+                        $("#lres").html(respkuch);
+                }).fail(function (errKuch) {
+                    alert(errKuch);
+                })
+                $("#modal").modal("hide");
+            });
+            $("#btnse").click(function doSearch() {
+                var emailid = $("#txtemail").val();
+                var obj = {
+                    type: "get",
+                    url: "/get-json",
+                    data: {
+                        emaili: emailid
+                    }
+                }
+                $.ajax(obj).done(function (respJSONKuch) {
+                    alert(JSON.stringify(respJSONKuch));
+                    $("#txtpwd").val(respJSONKuch[0].pwd)
+                    $("#txttyp").val(respJSONKuch[0].type)
+
+                }).fail(function (errKuch) {
+                    alert(errKuch);
+                })
+            });
+
+            $("#seelpwd").click(function () {
+                if ($("#seelpwd").prop("checked")) {
+                    $("#txtlpwd").prop("type", "text");
+                }
+                else {
+                    $("#txtlpwd").prop("type", "password");
+                }
+            });
+
+            $("#seespwd").click(function () {
+                if ($("#seespwd").prop("checked")) {
+                    $("#txtpwd").prop("type", "text");
+                }
+                else {
+                    $("#txtpwd").prop("type", "password");
+                }
+            });
+
+        });
+    </script>
 </head>
 
 <body>
@@ -46,9 +148,9 @@
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
-                   
-                        <button class="btn  me-2 cart" style="padding-right: 20px ; margin-right: 20px;" type="button" data-bs-toggle="modal"
-                        data-bs-target="#cart-modal"></button>
+
+                    <button class="btn  me-2 cart" style="padding-right: 20px ; margin-right: 20px;" type="button"
+                        data-bs-toggle="modal" data-bs-target="#cart-modal"></button>
                 </form>
                 <form class="d-flex">
                     <button class="btn btn-warning me-2" type="button" data-bs-toggle="modal"
@@ -88,50 +190,50 @@
                 <div class="col-md-3 off">
                     <div class="row">
                         <div class="col-3 p p1"></div>
-                                    <div class="col">
-                                <div>Free shipping
-                                </div>
-                                <div>When you spend $80 or more</div>
+                        <div class="col">
+                            <div>Free shipping
                             </div>
+                            <div>When you spend $80 or more</div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-3 off">
-                    
-                        
-                            <div class="row">
-                                <div class="col-3 p p2"></div>
-                                <div class="col">
-                                    <div>We are available 24/7
-                                    </div>
-                                    <div>
-                                        Need help? contact us anytime</div>
-                                </div>
+
+
+                    <div class="row">
+                        <div class="col-3 p p2"></div>
+                        <div class="col">
+                            <div>We are available 24/7
                             </div>
-                      
-                    
+                            <div>
+                                Need help? contact us anytime</div>
+                        </div>
+                    </div>
+
+
                 </div>
                 <div class="col-md-3 off">
                     <div class="row">
                         <div class="col-3 p p3"></div>
-                                    <div class="col">
-                                <div>Satisfied or return
-                                </div>
-                                <div>Easy 30-day return policy</div>
+                        <div class="col">
+                            <div>Satisfied or return
                             </div>
+                            <div>Easy 30-day return policy</div>
+                        </div>
                     </div>
-                   
+
                 </div>
                 <div class="col-md-3 off">
                     <div class="row">
                         <div class="col-3 p p4"></div>
-                                    <div class="col">
-                                <div>New Crpto Rewards
-                                </div>
-                                <div>
-                                    Secure Reward points</div>
+                        <div class="col">
+                            <div>New Crpto Rewards
                             </div>
+                            <div>
+                                Secure Reward points</div>
+                        </div>
                     </div>
-                   
+
                 </div>
             </div>
         </div>
@@ -282,7 +384,8 @@
         </div>
     </div> -->
     <div>
-        <div class="col-md-10 offset-md-1" style="background-color: black; color: gainsboro; padding: 20px 20px 20px 20px ;">
+        <div class="col-md-10 offset-md-1"
+            style="background-color: black; color: gainsboro; padding: 20px 20px 20px 20px ;">
             <div class="row">
                 <div class="col-md-4">
                     Shop
@@ -338,12 +441,6 @@
                         <div>
                             <span id="res">*</span>
                         </div>
-                        <label for="exampleInputType" class="form-label">Type</label>
-                        <select name="txttyp" id="txttyp" class="form-select" aria-label="Default select example">
-                            <option selected>Select Role</option>
-                            <option value="d">Donor</option>
-                            <option value="n">Needy</option>
-                        </select>
                     </form>
                 </div>
                 <div class="modal-footer">
